@@ -159,6 +159,42 @@
             background: #DCD8D0; 
         }
 
+        /* --- Native CSS Scroll Snap Gallery --- */
+        .carousel-wrapper {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .carousel-wrapper::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+
+        .carousel-wrapper .card-img {
+            flex: 0 0 100%;
+            width: 100%;
+            scroll-snap-align: start;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 0.75rem;
+            right: 0.75rem;
+            background: rgba(44, 44, 44, 0.7);
+            backdrop-filter: blur(4px);
+            color: #EFECE6;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            z-index: 5;
+            pointer-events: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            letter-spacing: 0.5px;
+        }
+
         .card-img {
             width: 100%;
             height: 100%;
@@ -243,57 +279,69 @@
         const projects = [
             // --- HEAVY ENGINEERING FIRST: Full-Stack & Systems ---
             {
-                id: 6, type: 'fullstack', badge: 'Admin Dashboard', title: 'Enterprise Management Dashboard', img: 'bluemoon-portal.jpg',
+                id: 6, type: 'fullstack', badge: 'Admin Dashboard', title: 'Enterprise Management Dashboard', 
+                img: ['bluemoon-portal-1.jpg', 'bluemoon-portal-2.jpg'],
                 desc: 'Secure employee dashboard deployed with robust backend logic for managing complex client bookings and operations.'
             },
             {
-                id: 7, type: 'fullstack', badge: 'Travel Logistics', title: 'Custom Travel Logistics System', img: 'chicago.jpg',
+                id: 7, type: 'fullstack', badge: 'Travel Logistics', title: 'Custom Travel Logistics System', 
+                img: ['chicago-1.jpg', 'chicago-2.jpg', 'chicago-3.jpg'],
                 desc: 'Comprehensive data management tool featuring daily briefings, group expense tracking, and interactive map logging.'
             },
             {
-                id: 9, type: 'fullstack', badge: 'Client Portal', title: 'Secure Patient Intake Portal', img: 'massage.jpg',
+                id: 9, type: 'fullstack', badge: 'Client Portal', title: 'Secure Patient Intake Portal', 
+                img: ['massage-1.jpg', 'massage-2.jpg'],
                 desc: 'Secure digital portal engineered for clientele to seamlessly manage appointments and update sensitive intake forms.'
             },
             {
-                id: 8, type: 'fullstack', badge: 'Map Tech', title: 'Interactive Mapping Application', img: 'apex.jpg',
+                id: 8, type: 'fullstack', badge: 'Map Tech', title: 'Interactive Mapping Application', 
+                img: 'apex.jpg',
                 desc: 'Geospatial mapping and management system dynamically connecting users with local physical facilities.'
             },
 
             // --- COMPLEX LOGIC: Multiplayer & Game States ---
             {
-                id: 10, type: 'games', badge: 'Party Game', title: 'Real-Time Multiplayer App', img: 'imposter.jpg',
+                id: 10, type: 'games', badge: 'Party Game', title: 'Real-Time Multiplayer App', 
+                img: ['imposter-1.jpg', 'imposter-2.jpg'], // Updated to Array!
                 desc: 'Custom social deduction game featuring automated QR code lobby instancing and synchronized live round management.'
             },
             {
-                id: 11, type: 'games', badge: 'WebSockets', title: 'Browser-Based Party Game', img: 'witlash.jpg',
+                id: 11, type: 'games', badge: 'WebSockets', title: 'Browser-Based Party Game', 
+                img: ['witlash-1.jpg', 'witlash-2.jpg'], // Updated to Array!
                 desc: 'Interactive, low-latency multiplayer game allowing large lobbies to connect and compete via rapid data delivery.'
             },
 
             // --- THE VISUAL LAYER: UI/UX Front-End Sites ---
             {
-                id: 1, type: 'frontend', badge: 'E-Commerce', title: 'Premium E-Commerce Platform', img: 'bluemoon-store.jpg', 
+                id: 1, type: 'frontend', badge: 'E-Commerce', title: 'Premium E-Commerce Platform', 
+                img: 'bluemoon-store.jpg', 
                 desc: 'Modern retail showcase featuring highly optimized, elegant layouts tailored for product sales and digital downloads.'
             },
             {
-                id: 2, type: 'frontend', badge: 'Landing Page', title: 'High-Conversion Landing Page', img: 'premium-flavor.jpg',
+                id: 2, type: 'frontend', badge: 'Landing Page', title: 'High-Conversion Landing Page', 
+                img: 'premium-flavor.jpg',
                 desc: 'Aggressively optimized, single-page marketing architecture engineered specifically for B2B lead generation.'
             },
             {
-                id: 3, type: 'frontend', badge: 'Brand Identity', title: 'Boutique Retail Website', img: 'sugarbliss.jpg',
+                id: 3, type: 'frontend', badge: 'Brand Identity', title: 'Boutique Retail Website', 
+                img: 'sugarbliss.jpg',
                 desc: 'Playful, vibrant user interface design for a local business, prioritizing brand identity and visual engagement.'
             },
             {
-                id: 5, type: 'frontend', badge: 'Athletic UI', title: 'Fitness Studio Web Presence', img: 'koh-muay-thai.jpg',
+                id: 5, type: 'frontend', badge: 'Athletic UI', title: 'Fitness Studio Web Presence', 
+                img: 'koh-muay-thai.jpg',
                 desc: 'Striking, action-oriented web design optimizing the user funnel directly toward class scheduling and trials.'
             },
             {
-                id: 4, type: 'frontend', badge: 'Service Portal', title: 'Service Booking Website', img: 'nailstudio.jpg',
+                id: 4, type: 'frontend', badge: 'Service Portal', title: 'Service Booking Website', 
+                img: 'nailstudio.jpg',
                 desc: 'Warm and inviting web architecture highlighting local services and streamlining customer onboarding workflows.'
             },
             
             // --- EXPERIMENTAL / FUN STUFF AT THE BOTTOM ---
             {
-                id: 12, type: 'fullstack', badge: 'Gamified Finance', title: 'Retro Personal Finance App', img: 'fire-tracker.jpg', 
+                id: 12, type: 'fullstack', badge: 'Gamified Finance', title: 'Retro Personal Finance App', 
+                img: 'fire-tracker.jpg', 
                 desc: 'A gamified Financial Independence (FIRE) budget tracker featuring a custom 8-bit retro UI, quest-based savings goals, and live terminal market integrations.'
             }
         ];
@@ -307,12 +355,24 @@
 
             filtered.forEach((item, index) => {
                 const delay = index * 0.06;
+                
+                let imgMarkup = '';
+                let wrapperClass = 'card-img-wrapper';
+
+                // Core Logic: Array triggers a native scroll-snap container
+                if (Array.isArray(item.img)) {
+                    wrapperClass += ' carousel-wrapper';
+                    imgMarkup = item.img.map(src => `<img src="${src}" alt="${item.title}" class="card-img" onerror="this.style.display='none';">`).join('');
+                    imgMarkup += `<div class="scroll-hint">Scroll ➔</div>`;
+                } else {
+                    imgMarkup = `<img src="${item.img}" alt="${item.title}" class="card-img" onerror="this.style.display='none';">`;
+                }
+
                 const html = `
                     <div class="card" style="animation-delay: ${delay}s">
-                        <div class="card-img-wrapper">
+                        <div class="${wrapperClass}">
                             <span class="card-badge">${item.badge}</span>
-                            <img src="${item.img}" alt="${item.title}" class="card-img" 
-                                 onerror="this.style.display='none';">
+                            ${imgMarkup}
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">${item.title}</h3>
